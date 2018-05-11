@@ -1,0 +1,41 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>NATIVE_TO_ASCII_UTF-8
+===================================================================
+--- src/main/resources/application.properties	(revision acdd60ad4ea52a211255eb331b8ec98658ae5366)
++++ src/main/resources/application.properties	(date 1526018860000)
+@@ -1,4 +1,28 @@
+-server.port=8761
+-eureka.client.register-with-eureka=false
+-eureka.client.fetch-registry=false
+-eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+\ No newline at end of file
++#server.port=8761
++#eureka.client.register-with-eureka=false
++#eureka.client.fetch-registry=false
++#eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
++
++spring.application.name=discovery-eureka-cp
++
++#eureka.client.register-with-eureka=false
++#eureka.client.fetch-registry=false
++#eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
++
++#---
++##指定profile=peer1
++#spring.profiles=peer1
++#server.port=8761
++##指定当profile=peer1时，主机名为peer1
++#eureka.instance.hostname=peer1
++##将自己注册到peer2这个eureka上面去
++#eureka.client.service-url.defaultZone=http://peer2:8762/eureka/
++
++---
++#指定profile=peer1
++spring.profiles=peer2
++server.port=8762
++#指定当profile=peer1时，主机名为peer1
++eureka.instance.hostname=peer2
++#将自己注册到peer2这个eureka上面去
++eureka.client.service-url.defaultZone=http://peer1:8761/eureka/
